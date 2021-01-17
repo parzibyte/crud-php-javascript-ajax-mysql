@@ -26,25 +26,19 @@ Y compartiendo mi blog con tus amigos
 También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0CkGB6AFUoBg?sub_confirmation=1
 ------------------------------------------------------------------------------------------------
 */ ?>
-<?php include_once "encabezado.php" ?>
-<div class="columns">
-    <div class="column">
-        <h2 class="is-size-2">Productos existentes</h2>
-        <a class="button is-success" href="agregar_producto.php">Nuevo&nbsp;<i class="fa fa-plus"></i></a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody id="cuerpoTabla">
-            </tbody>
-        </table>
-    </div>
-</div>
-<script src="js/productos.js"></script>
-<?php include_once "pie.php" ?>
+<?php
+$cargaUtil = json_decode(file_get_contents("php://input"));
+// Si no hay datos, salir inmediatamente indicando un error 500
+if (!$cargaUtil) {
+    http_response_code(500);
+    exit;
+}
+// Extraer valores
+$id = $cargaUtil->id;
+$nombre = $cargaUtil->nombre;
+$precio = $cargaUtil->precio;
+$descripcion = $cargaUtil->descripcion;
+include_once "funciones.php";
+$respuesta = actualizarProducto($nombre, $precio, $descripcion, $id);
+// Devolver al cliente la respuesta de la función
+echo json_encode($respuesta);

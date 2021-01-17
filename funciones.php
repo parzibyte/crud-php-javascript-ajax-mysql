@@ -28,6 +28,20 @@ También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0Ck
 */ ?>
 <?php
 
+function actualizarProducto($nombre, $precio, $descripcion, $id)
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->prepare("UPDATE productos SET nombre = ?, precio = ?, descripcion = ? WHERE id = ?");
+    return $sentencia->execute([$nombre, $precio, $descripcion, $id]);
+}
+
+function obtenerProductoPorId($id)
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->prepare("SELECT id, nombre, descripcion, precio FROM productos WHERE id = ?");
+    $sentencia->execute([$id]);
+    return $sentencia->fetchObject();
+}
 
 function obtenerProductos()
 {

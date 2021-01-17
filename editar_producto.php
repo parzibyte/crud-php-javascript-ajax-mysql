@@ -28,23 +28,33 @@ También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0Ck
 */ ?>
 <?php include_once "encabezado.php" ?>
 <div class="columns">
-    <div class="column">
-        <h2 class="is-size-2">Productos existentes</h2>
-        <a class="button is-success" href="agregar_producto.php">Nuevo&nbsp;<i class="fa fa-plus"></i></a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody id="cuerpoTabla">
-            </tbody>
-        </table>
+    <div class="column is-one-third">
+        <h2 class="is-size-2">Editar producto</h2>
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <div class="control">
+                <input required id="nombre" class="input" type="text" placeholder="Nombre" name="nombre">
+            </div>
+        </div>
+        <div class="field">
+            <label for="descripcion">Descripción</label>
+            <div class="control">
+                <textarea name="descripcion" class="textarea" id="descripcion" cols="30" rows="5" placeholder="Descripción" required></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <label for="precio">Precio</label>
+            <div class="control">
+                <input required id="precio" name="precio" class="input" type="number" placeholder="Precio">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button id="btnGuardar" class="button is-success">Guardar</button>
+                <a href="productos.php" class="button is-warning">Volver</a>
+            </div>
+        </div>
     </div>
 </div>
-<script src="js/productos.js"></script>
+<script src="js/editar_producto.js"></script>
 <?php include_once "pie.php" ?>
