@@ -27,10 +27,11 @@ También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0Ck
 ------------------------------------------------------------------------------------------------
 */ ?>
 <?php
-if (!isset($_POST["id_producto"])) {
-    exit("No hay datos");
+if (!isset($_GET["id"])) {
+    http_response_code(500);
+    exit();
 }
 
 include_once "funciones.php";
-eliminarProducto($_POST["id_producto"]);
-header("Location: productos.php");
+$respuesta = eliminarProducto($_GET["id"]);
+echo json_encode($respuesta);
