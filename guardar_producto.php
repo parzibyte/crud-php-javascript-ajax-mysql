@@ -27,9 +27,17 @@ También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0Ck
 ------------------------------------------------------------------------------------------------
 */ ?>
 <?php
-if (!isset($_POST["nombre"]) || !isset($_POST["precio"]) || !isset($_POST["descripcion"])) {
-    exit("Faltan datos");
+$cargaUtil = json_decode(file_get_contents("php://input"));
+// Si no hay datos, salir inmediatamente indicando un error 500
+if (!$cargaUtil) {
+    http_response_code(500);
+    exit;
 }
+// Extraer valores
+$nombre = $cargaUtil->nombre;
+$precio = $cargaUtil->precio;
+$descripcion = $cargaUtil->descripcion;
 include_once "funciones.php";
-guardarProducto($_POST["nombre"], $_POST["precio"], $_POST["descripcion"]);
-header("Location: productos.php");
+$respuesta = guardarProducto($nombre, $precio, $descripcion);
+// Devolver al cliente la respuesta de la función
+echo json_encode($respuesta);
