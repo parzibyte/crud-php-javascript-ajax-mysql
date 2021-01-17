@@ -33,12 +33,14 @@ $btnGuardar.onclick = async () => {
         return Swal.fire({
             icon: "error",
             text: "Escribe el nombre",
+            timer: 700, // <- Ocultar dentro de 0.7 segundos
         });
     }
     if (!descripcion) {
         return Swal.fire({
             icon: "error",
             text: "Escribe la descripción",
+            timer: 700, // <- Ocultar dentro de 0.7 segundos
         });
     }
 
@@ -46,6 +48,7 @@ $btnGuardar.onclick = async () => {
         return Swal.fire({
             icon: "error",
             text: "Escribe el precio",
+            timer: 700, // <- Ocultar dentro de 0.7 segundos
         });
     }
     // Lo que vamos a enviar a PHP. También incluimos el ID

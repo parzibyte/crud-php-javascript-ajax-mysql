@@ -59,6 +59,7 @@ const obtenerProductos = async () => {
                     Swal.fire({
                         icon: "success",
                         text: "Producto eliminado",
+                        timer: 700, // <- Ocultar dentro de 0.7 segundos
                     });
                 } else {
                     Swal.fire({
